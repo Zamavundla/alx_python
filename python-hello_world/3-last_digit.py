@@ -3,7 +3,7 @@ number = random.randint(-10000, 10000)
 
 last_digit = number
 
-print("Last digit of {} is {}".format(number, last_digit), end="98")
+print("Last digit of {} is {}".format(number, last_digit), end="")
 if last_digit > 5:
     print("and is greater than 5")
 elif last_digit == 0:
