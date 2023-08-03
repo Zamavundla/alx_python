@@ -3,5 +3,5 @@ def raise_exception():
 
 try:
     raise_exception()
-except TypeError as te:
+except TypeError:
     print("Exception has been raised")
