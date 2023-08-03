@@ -1,5 +1,5 @@
 def raise_exception():
-    raise TypeError("This is a type exception.")
+    raise TypeError()
 
 try:
     raise_exception()
