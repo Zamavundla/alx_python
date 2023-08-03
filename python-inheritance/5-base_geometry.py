@@ -43,3 +43,9 @@ try:
     bg.integer_validator("age", 13.5)
 except TypeError as e:
     print("[{}] {}".format(e.__class__.__name__, e))
+
+bg = BaseGeometry()
+try:
+    bg.area()
+except Exception as e:
+    print("[{}] {}".format(e.__class__.__name__, e))
