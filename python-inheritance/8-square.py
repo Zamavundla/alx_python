@@ -36,29 +36,10 @@ class Square(Rectangle):
         return "[Square] {}/{}".format(self.__size, self.__size)
 
 
-print(dir(Square))  # Output: ['_Rectangle__height', '_Rectangle__width', '_Square__size', '__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'area', 'integer_validator']
+s1 = Square(5)
+print(s1)  # Output: [Square] 5/5
+print(s1.area())  # Output: 25
 
-print(issubclass(Square, Rectangle))  # Output: True
-
-s = Square(4)
-print(s)  # Output: [Square] 4/4
-print(s.area())  # Output: 16
-
-s = Square(1340)
-print(s)  # Output: [Square] 1340/1340
-print(s.area())  # Output: 1795600
-
-s = Square()
-print(s)  # Output: [Square] 0/0
-print(s.area())  # Output: 0
-
-try:
-    s = Square("13")
-except TypeError as e:
-    print(e)  # Output: size must be an integer
-
-s = Square(13)
-print(s)  # Output: [Square] 13/13
-print(s.area())  # Output: 169
-print(s.width)  # Output: 13
-print(s.height)  # Output: 13
+s2 = Square(10)
+print(s2)  # Output: [Square] 10/10
+print(s2.area())  # Output: 100
