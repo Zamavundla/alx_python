@@ -1,17 +1,19 @@
 def update_dictionary(a_dictionary, key, value):
     a_dictionary[key] = value
+    best_key = max(a_dictionary, key=lambda k: (isinstance(a_dictionary[k], int), a_dictionary[k]))
+    return best_key
 
 #dictionary1 = {'name': 'John', 'age': 25}
-#update_dictionary(dictionary1, 'age', 30)
-#print(dictionary1)
-# Output: {'name': 'John', 'age': 30}
+#best_key = update_dictionary(dictionary1, 'age', 30)
+#print("Updated dictionary:", dictionary1)
+#print("Best key:", best_key)
 
 #dictionary2 = {'name': 'Alice'}
-#update_dictionary(dictionary2, 'age', 20)
-#print(dictionary2)
-# Output: {'name': 'Alice', 'age': 20}
+#best_key = update_dictionary(dictionary2, 'age', 20)
+#print("Updated dictionary:", dictionary2)
+#print("Best key:", best_key)
 
 #dictionary3 = {}
-#update_dictionary(dictionary3, 'subject', 'Math')
-#print(dictionary3)
-# Output: {'subject': 'Math'}
+#best_key = update_dictionary(dictionary3, 'subject', 'Math')
+#print("Updated dictionary:", dictionary3)
+#print("Best key:", best_key)
