@@ -17,3 +17,44 @@ class Rectangle(BaseGeometry):
         self.integer_validator("height", height)
         self.__width = width
         self.__height = height
+
+
+bg = BaseGeometry()
+print(dir(bg))
+
+bg = BaseGeometry()
+bg.integer_validator("myint", 12)
+
+bg = BaseGeometry()
+bg.integer_validator("myint", 12)
+bg.integer_validator("width", 89)
+
+bg = BaseGeometry()
+try:
+    bg.integer_validator("name", "John")
+except TypeError as e:
+    print("[{}] {}".format(e.__class__.__name__, e))
+
+bg = BaseGeometry()
+try:
+    bg.integer_validator("age", 0)
+except ValueError as e:
+    print("[{}] {}".format(e.__class__.__name__, e))
+
+bg = BaseGeometry()
+try:
+    bg.integer_validator("age", -4)
+except ValueError as e:
+    print("[{}] {}".format(e.__class__.__name__, e))
+
+bg = BaseGeometry()
+try:
+    bg.integer_validator("age", 13.5)
+except TypeError as e:
+    print("[{}] {}".format(e.__class__.__name__, e))
+
+bg = BaseGeometry()
+try:
+    bg.area()
+except Exception as e:
+    print("[{}] {}".format(e.__class__.__name__, e))
