@@ -25,23 +25,3 @@ if is_kind_of_class(a, int):
     print(True)
 else:
     print(False)
-
-a = True
-if is_kind_of_class(a, object):
-    print(True)
-
-a = None
-if is_kind_of_class(a, object):
-    print(True)
-
-a = None
-if is_kind_of_class(a, list):
-    print(False)
-
-a = [1, 2, 3]
-if is_kind_of_class(a, list):
-    print(True)
-
-a = [1, 2, 3]
-if is_kind_of_class(a, object):
-    print(True)
