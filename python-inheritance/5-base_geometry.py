@@ -10,6 +10,7 @@ class BaseGeometry:
         if value <= 0:
             raise ValueError("{} must be greater than 0".format(name))
 
+# Test cases
 bg = BaseGeometry()
 print(dir(bg))
 
