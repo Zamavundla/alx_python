@@ -13,14 +13,10 @@ def is_kind_of_class(obj, a_class):
 a = 1
 if is_kind_of_class(a, int):
     print(True)
-else:
-    print(False)
 
 a = True
 if is_kind_of_class(a, int):
     print(True)
-else:
-    print(False)
 
 a = 3.14
 if is_kind_of_class(a, int):
@@ -31,14 +27,10 @@ else:
 a = True
 if is_kind_of_class(a, object):
     print(True)
-else:
-    print(False)
 
 a = None
 if is_kind_of_class(a, object):
     print(True)
-else:
-    print(False)
 
 a = None
 if is_kind_of_class(a, list):
