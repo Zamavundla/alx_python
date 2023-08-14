@@ -1,7 +1,10 @@
+"""This module will return True if an object is an instance
+Or if tthe inherited class object is for instance
+Or otherwise specify False"""
 def is_kind_of_class(obj, a_class):
     return isinstance(obj, a_class)
 
-#if __name__ == "__main__":
+if __name__ == "__main__":
     a = 1
     if is_kind_of_class(a, int):
         print("{} comes from {}".format(a, int.__name__))
