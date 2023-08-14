@@ -1,7 +1,9 @@
 import sys
 
+if __name__ == "__main__":
+
 # Get the number of arguments
-num_args = len(sys.argv) - 1
+  num_args = len(sys.argv) - 1
 
 # Print the number of arguments and the corresponding text
 if num_args == 0:
