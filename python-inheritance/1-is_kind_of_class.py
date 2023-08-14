@@ -10,10 +10,9 @@ def is_kind_of_class(obj, a_class):
     """
     return isinstance(obj, a_class)
 
-if __name__ == "__main__":
 
 # Test cases
-  a = 1
+a = 1
 print(is_kind_of_class(a, int))  # True
 
 a = True
