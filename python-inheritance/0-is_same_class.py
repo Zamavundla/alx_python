@@ -1,4 +1,4 @@
-"""The module returns True if the object is an instance of a specified class/ False if not."""
+"""The module returns True if the object is an instance of a specified class/ False"""
 
 def is_same_class(obj, a_class):
     """prototype for the instance, which defines an object and a class."""
