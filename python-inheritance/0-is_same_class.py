@@ -4,7 +4,6 @@ def is_same_class(obj, a_class):
     else:
         return False
 
-if __name__ == "__main__":
     a = 1
     if is_same_class(a, int):
         print("{} is an instance of the class {}".format(a, int.__name__))
