@@ -17,4 +17,4 @@ if is_same_class(obj, int):
 if is_same_class(obj, float):
     print("{} is an instance of the class {}".format(obj, float.__name__))
 if is_same_class(obj, object):
-    print("{} is an instance of the class {}".format(obj, int.__name__))
+    print("{} is an instance of the class {}".format(obj, object.__name__))
