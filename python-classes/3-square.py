@@ -1,42 +1,32 @@
-class Square:
-    def __init__(self, size=0):
-        self.__size = size
+#!/usr/bin/python
+"""A module for class that defines the area of a square with size=0"""
 
+class Square:
+    """initialising the created square instance"""
+    def __init__(self, size=0):
+        """For initialisation of square size"""
+        self.__size = size
+    
     @property
     def size(self):
+        """To get square size"""
         return self.__size
-
+    
     @size.setter
     def size(self, value):
+        """For setting the square size"""
+        
         if not isinstance(value, int):
+            """Instance must be an integer if not must be a TypeError"""
             raise TypeError("size must be an integer")
+        
         elif value < 0:
+            """Instance for value must be less than zero if not there must be a valueError"""
             raise ValueError("size must be >= 0")
-        self.__size = value
+        
+        else:
+            self.__size = value
 
     def area(self):
+        """public instance for the area"""
         return self.__size * self.__size
-
-
-mysquare = Square(3)
-print(type(mysquare))  # Output: <class '__main__.Square'>
-print(mysquare.__dict__)  # Output: {'_Square__size': 3}
-
-# Correct output - case: mysquare = Square(89)
-mysquare = Square(89)
-print(type(mysquare))  # Output: <class '__main__.Square'>
-print(mysquare.__dict__)  # Output: {'_Square__size': 89}
-
-# Try to access the 'size' attribute directly (Not recommended)
-# This will raise an AttributeError since 'size' is a private attribute and not directly accessible
-try:
-    print(mysquare.size)
-except AttributeError as e:
-    print(e)  # Output: 'Square' object has no attribute 'size'
-
-# Try to access the '_size' attribute directly (Not recommended)
-# This will raise an AttributeError since '_size' is a private attribute and not directly accessible
-try:
-    print(mysquare._size)
-except AttributeError as e:
-    print(e)  # Output: 'Square' object has no attribute '_size'
