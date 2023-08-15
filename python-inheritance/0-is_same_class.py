@@ -1,4 +1,5 @@
-"""The module returns True if the object is an instance of a specified class/ False"""
+#!/usr/bin/python3
+"""The module returns True if the object is an instance of a specified class or False if not."""
 
 def is_same_class(obj, a_class):
     """prototype for the instance, which defines an object and a class."""
@@ -11,34 +12,11 @@ def is_same_class(obj, a_class):
     else:
         """If obj is not a class it must return false."""
         return False
-        a = 1
-    if is_same_class(a, int):
-        print("{} is an instance of the class {}".format(a, int.__name__))
-        
-    a = True
-    if is_same_class(a, int):
-        print("{} is an instance of the class {}".format(a, int.__name__))
-        
-    a = 3.14
-    if is_same_class(a, int):
-        print("{} is an instance of the class {}".format(a, int.__name__))
-        
-    a = True
-    if is_same_class(a, object):
-        print("{} is an instance of the class {}".format(a, object.__name__))
-        
-    a = None
-    if is_same_class(a, object):
-        print("{} is an instance of the class {}".format(a, object.__name__))
-        
-    a = None
-    if is_same_class(a, list):
-        print("{} is an instance of the class {}".format(a, list.__name__))
-        
-    a = [1, 2, 3]
-    if is_same_class(a, list):
-        print("{} is an instance of the class {}".format(a, list.__name__))
-        
-    a = [1, 2, 3]
-    if is_same_class(a, object):
-        print("{} is an instance of the class {}".format(a, object.__name__))
+    
+obj = 1
+if is_same_class(obj, int):
+    print("{} is an instance of the class {}".format(obj, int.__name__))
+if is_same_class(obj, float):
+     print("{} is an instance of the class {}".format(obj, float.__name__))
+if is_same_class(obj, object):
+    print("{} is an instance of the class {}".format(obj, int.__name__))
