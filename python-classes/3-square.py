@@ -1,5 +1,6 @@
 #!/usr/bin/python
-"""A module for class that defines the area of a square with size=0"""
+"""A module for class that defines the area of a
+square with size=0"""
 
 class Square:
     """initialising the created square instance"""
@@ -21,7 +22,8 @@ class Square:
             raise TypeError("size must be an integer")
         
         elif value < 0:
-            """Instance for value must be less than zero if not there must be a valueError"""
+            """Instance for value must be less 
+            than zero if not there must be a valueError"""
             raise ValueError("size must be >= 0")
         
         else:
