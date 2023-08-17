@@ -1,8 +1,10 @@
 #!/usr/bin/python3
+
+from models.rectangle import Rectangle
+
 """This module is for a square class that will inherit from the rectangle class"""
 
 """To import rectangle class from rectangle file"""
-from models.rectangle import Rectangle
 
 """class that inherits from rectangle class"""
 class Square(Rectangle):

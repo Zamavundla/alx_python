@@ -1,3 +1,4 @@
+#! /usr/bin/python3
 def is_prime(number):
     # If the number is less than or equal to 1, it's not prime, so return False.
     if number <= 1:

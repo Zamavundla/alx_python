@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 def fibonacci_sequence(n):
     fibonacci_numbers = [0, 1]
     while len(fibonacci_numbers) < n:
