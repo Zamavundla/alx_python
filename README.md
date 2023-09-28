@@ -1,3 +1,3 @@
-# alx_python
+This is an introduction to the python programming language.Happy coding
 
-This folder will contain Python Challenges by ALX Intro to Software Engineering (20hr)
+![Alt text](image.png)
