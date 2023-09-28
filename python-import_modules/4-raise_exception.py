@@ -1,2 +1,4 @@
 def raise_exception():
-    raise TypeError("Exception has been raised")
+    x = "charles"
+    if type(x) is not int:
+        raise TypeError("Only integers are allowed")

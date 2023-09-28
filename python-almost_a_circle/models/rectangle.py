@@ -1,167 +1,124 @@
-#!/usr/bin/python3
-
+"""Write the class Rectangle that inherits from Base.
+"""
 from models.base import Base
+"""Module for creating a Rectangle class."""
 
-"""Module for class Rectangle that inherits from Base"""
 
-"""To import the base file import the class Base"""
-
-"""class module that inherits from Base class"""
 class Rectangle(Base):
-    """Defined rectangle class that will inherit from Base class"""
+    """Rectangle class.
+    """
 
-    def __init__(self, width=0, height=0, x=0, y=0, id=None):
-        """To initialise the attributs """
+    def __init__(self, width, height, x=0, y=0, id=None):
+        """init method."""
         super().__init__(id)
-        """super to call and use the logic of the init of the Base class"""
         self.width = width
         self.height = height
         self.x = x
         self.y = y
-    
-    """To get width instance"""
+
+    """Getters and setters."""
+
     @property
     def width(self):
-        """To difine width method"""
+        """width getter."""
         return self.__width
-    
-    """To get height instance"""
+
     @property
     def height(self):
-        """To difine width method"""
+        """height getter."""
         return self.__height
-    
-    """To get x instance"""
+
     @property
     def x(self):
-        """for defining x method"""
+        """x getter."""
         return self.__x
-    
-    """To get y instance"""
+
     @property
     def y(self):
-        """To define y method"""
+        """y getter."""
         return self.__y
-    
-    """To set instance for width"""
+
     @width.setter
     def width(self, value):
-        """To define the width method"""
-
-        if not isinstance(value, int):
-            """To raise exception if the input is not an int"""
+        """width setter."""
+        if type(value) is not int:
             raise TypeError("width must be an integer")
-            """To inform that the input needs to be an integer"""            
-        
         elif value <= 0:
-            """For the given attribute must be <=0"""
-
             raise ValueError("width must be > 0")
-            """To raise a ValueError if width is not <=0"""
-        
         else:
-            self.__width = value 
-    
-    
-    """To set instance for height"""
+            self.__width = value
+
     @height.setter
     def height(self, value):
-        """To define the height method"""
-        
-        if not isinstance(value, int):
-            """To raise exception if the input is not an int"""
+        """height setter."""
+        if type(value) is not int:
             raise TypeError("height must be an integer")
-            """To inform that the input needs to be an integer"""            
-        
         elif value <= 0:
-            """For the given attribute must be <=0"""
             raise ValueError("height must be > 0")
-            """To raise a ValueError if height is not <=0"""
         else:
             self.__height = value
-    
-    """To set instance for X"""
+
     @x.setter
     def x(self, value):
-        """To define the x method to set"""
-        if not isinstance(value, int):
-            """To raise exception if the input is not an int"""
+        """x setter."""
+        if type(value) is not int:
             raise TypeError("x must be an integer")
-            """To inform that the input needs to be an integer"""            
-            
         elif value < 0:
-            """For the given attribute must be <=0"""
             raise ValueError("x must be >= 0")
-            """To raise a ValueError is x is not <=0"""
         else:
             self.__x = value
 
-    """To set instance for Y"""
     @y.setter
     def y(self, value):
-        """to define the y method"""
-        
-        if not isinstance(value, int):
-            """To raise exception if the input is not an int"""
+        """y setter."""
+        if type(value) is not int:
             raise TypeError("y must be an integer")
-            """To inform that the input needs to be an integer"""            
-        
         elif value < 0:
-            """For the given attribute must be >=0"""
             raise ValueError("y must be >= 0")
-            """To raise a ValueError is y is not >=0"""
         else:
             self.__y = value
-        
+            
     def area(self):
-        """To define the area method"""
-        return self.__height * self.__width
-        """Use rectangle area formular"""
-
-#a = Rectangle(width=12, height=3)
-#print(a.area())
+        """Area method."""
+        return self.width * self.height
     
     def display(self):
-        """To define the display public method"""
-        for i in range(self.__y):
-            """The instance of characher # range"""
+        """Display method."""
+        for i in range(self.y):
             print()
-            """To dispaly results"""
-        
-        for i in range(self.__height):
-            """To define the range"""
-            print(" " * self.__x + "#" * self.__width)
-            """To display characters '#' as a rectangle"""
-
+        for i in range(self.height):
+            print(" " * self.x, end="")
+            print("#" * self.width)
+            
     def __str__(self):
-        """To define the str method"""
-        return f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - {self.__width}/{self.__height}"
-        """To return the string"""
+        """str method."""
+        return f"[Rectangle] ({self.id}) {self.x}/{self.y} - {self.width}/{self.height}"
     
     def update(self, *args, **kwargs):
-        """Public method that assigns an argument to each attribute"""
-        if len(args) >= 1:
-            """First argument"""
-            self.id = args[0]
-            """ID attribute"""
-        if len(args) >= 2:
-            """Second argument"""
-            self.width = args[1]
-            """width attribute"""
-        if len(args) >= 3:
-            """Third argument"""
-            self.height = args[2]
-            """height attribute"""
-        if len(args) >= 4:
-            """Fourth argument"""
-            self.x = args[3]
-            """x attribute"""
-        if len(args) >= 5:
-            """Fifth argument"""
-            self.y = args[4]
-            """Y attribute"""
+        """Update method."""
+        if len(args) > 0:
+            for i, arg in enumerate(args):
+                if i == 0:
+                    self.id = arg
+                elif i == 1:
+                    self.width = arg
+                elif i == 2:
+                    self.height = arg
+                elif i == 3:
+                    self.x = arg
+                elif i == 4:
+                    self.y = arg
+        else:
+            for key, value in kwargs.items():
+                if key == "id":
+                    self.id = value
+                elif key == "width":
+                    self.width = value
+                elif key == "height":
+                    self.height = value
+                elif key == "x":
+                    self.x = value
+                elif key == "y":
+                    self.y = value
         
-        for key, value in kwargs.items():
-            """**kwargs must be skipped if args exists and not empty"""
-            setattr(self, key, value)
-            """Set attributes to"""
+    

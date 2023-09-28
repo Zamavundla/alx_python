@@ -1,41 +1,54 @@
-#!/usr/bin/python3
-"""module that defines a square class"""
+"""Class Square that defines a square by: (based on 3-square.py)
+"""
 
 class Square:
-    """Initialising the created square"""
+    """__init__ method to initialize the Square instance.
+    """
+
     def __init__(self, size=0):
-        """Iinitialising the square size"""
+        """private instance attribute: size.
+        """
         self.__size = size
 
     @property
     def size(self):
-        """For getting the size of square"""
+        """Getter for size property.
+        """
         return self.__size
-    
+
     @size.setter
     def size(self, value):
-        """For setting square size"""
+        """Setter for size property.
+        Args:
+            value (int): size of the square.
+        Handle:
+            TypeError: if size is not an integer.
 
-        if not isinstance(value, int):
-            """instance must be an int or be a type error"""
-            raise TypeError("size must be an integer")
-        
-        elif value < 0:
-            """Instance size must be less than 0 or valueError"""
-            raise ValueError("value must be >= 0")
-        
+            ValueError: if size is less than 0.
+        """
+        if isinstance(value, int):
+            if value < 0:
+                raise ValueError("size must be >= 0")
+            else:
+                self.__size = value
         else:
-            self.__size = value
+            raise TypeError("size must be an integer")
+    """public instance method: def area(self).
+    Returns:
+        the current square area.
+    """
 
     def area(self):
-            """Public instance for area of the square"""
-            return self.__size * self.__size
-        
+        return self.__size**2
+    
     def my_print(self):
-        """Public instant to print"""
+        """Prints in stdout the square with the character #.
+        """
         if self.__size == 0:
             print()
-
         else:
             for i in range(self.__size):
                 print("#" * self.__size)
+
+
+                

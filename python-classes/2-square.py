@@ -1,22 +1,29 @@
-#!/usr/bin/python3
-"""This a module of a class, that defines a class with size =0 and an area of the
-square, the instance must have an exception"""
+"""class Square that defines a square by: (based on 1-square.py).
+"""
+
 
 class Square:
-    """initialise the created square instance"""
+    """__init__ method to initialize the Square instance.
+    Args:
+        size (int): size of the square.
+    """
+
     def __init__(self, size=0):
-        """To initialise the square size."""
-        if not isinstance(size, int):
-            """The instance must be an integer if not there must be a TypeError"""
-            raise TypeError("size must be an integer")
-        
-        elif size < 0:
-            """The instance for size must be < 0 or have ValueError"""
-            raise ValueError("size must be >=0")
-        
-        else:
-            self.__size = size
-    
+        """private instance attribute: size.
+        """
+        self.__size = size
+    """public instance method: def area(self).
+    Returns:
+        the current square area.
+    """
+
     def area(self):
-        """public instance for area"""
-        return self.__size * self.__size
+        return self.__size**2
+
+
+"""Create an instance x of class Square, size = 5.
+"""
+x = Square(5)
+"""Call the area method and print the result.
+"""
+x.area()

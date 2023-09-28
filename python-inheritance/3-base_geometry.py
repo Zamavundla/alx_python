@@ -1,8 +1,6 @@
+""" empty class BaseGeometry.
+"""
 class BaseGeometry:
-    """ BaseGeometry class documentation """
+    """ BaseGeometry class.
+    """
     pass
-
-bg = BaseGeometry()
-print(bg)
-print(dir(bg))
-print(dir(BaseGeometry))

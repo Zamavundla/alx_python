@@ -1,22 +1,17 @@
-#!/usr/bin/python3
-"""The module returns True if the object is an instance of a specified class or False if not."""
-
+"""Function that returns True if the object is exactly an instance of the specified class ; otherwise False.
+"""
 def is_same_class(obj, a_class):
-    """prototype for the instance, which defines an object and a class."""
-    
+    """condition to check if obj is an instance of a_class.
+
+    Args:
+        obj (_type_): check if obj is an instance of a_class.
+        a_class (_type_): check if obj is an instance of a_class.
+
+    Returns:
+        _type_: _description_
+    """
     if type(obj) is a_class:
-        """To define if if the obj is exactly a class and return true."""
-        
         return True
-    
-    else:
-        """If obj is not a class it must return false."""
+    elif obj is not a_class:
         return False
-    
-obj = 1
-if is_same_class(obj, int):
-    print("{} is an instance of the class {}".format(obj, int.__name__))
-if is_same_class(obj, float):
-     print("{} is an instance of the class {}".format(obj, float.__name__))
-if is_same_class(obj, object):
-    print("{} is an instance of the class {}".format(obj, int.__name__))
+is_same_class(1, 2)

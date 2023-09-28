@@ -1,35 +1,46 @@
-#!/usr/bin/python3
-
+"""importation of modules.
+"""
 from models.rectangle import Rectangle
-
-"""This module is for a square class that will inherit from the rectangle class"""
-
-"""To import rectangle class from rectangle file"""
-
-"""class that inherits from rectangle class"""
+"""class square inherited from Rectangle.
+"""
 class Square(Rectangle):
-    """Define the class square inheriting from Rectangle"""
-
+    """Square class.
+    """
+    """init method.
+    """
     def __init__(self, size, x=0, y=0, id=None):
-        """Method to initialise the init if class square"""
+        """attributes of square class.
+        """
         super().__init__(size, size, x, y, id)
-        """Method defining super"""
+        self.size = size
+        self.x = x
+        self.y = y
+    """area method for square.
+    """
+    def area(self):
+        """area method for square.
+        """
+        return self.size ** 2
+    """str method for square.
+    """
+    def __str__(self):
+        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.size}"
     
-    """Public method getter size"""
     @property
     def size(self):
-        """Public getter Method defining size"""
-        return self.width
-        """To return size """
-    
-    """Public method setter for size"""
+        """size getter.
+        """
+        return self.__size
     @size.setter
     def size(self, value):
-        """Method to set attributes to value"""
-        self.width = value
-        self.height = value
+        """size setter.
+        """
+        if type(value) is not int:
+            raise TypeError("width must be an integer")
+        elif value <= 0:
+            raise ValueError("width must be > 0")
+        else:
+            self.__size = value
+            
+            
     
-    def __str__(self):
-        """To define the str function"""
-        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.size}"
-        """Return overloading square"""

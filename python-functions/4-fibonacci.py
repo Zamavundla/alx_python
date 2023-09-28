@@ -1,10 +1,5 @@
-#!/usr/bin/python3
-def fibonacci_sequence(n):
-    fibonacci_numbers = [0, 1]
-    while len(fibonacci_numbers) < n:
-        next_number = fibonacci_numbers[-1] + fibonacci_numbers[-2]
-        fibonacci_numbers.append(next_number)
-    return fibonacci_numbers[:n]
+fibonacci = lambda n: n if n < 2 else fibonacci(n-1) + fibonacci(n-2)
 
-n = 10
-fibonacci_numbers = fibonacci_sequence(n)
+def fibonacci_sequence(n):
+    return [fibonacci(i) for i in range(n)]
+(fibonacci_sequence(10))
