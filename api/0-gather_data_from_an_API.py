@@ -23,7 +23,7 @@ def get_employee_todo_progress(employee_id):
     print(f"Employee {employee_name} is done with tasks({completed_tasks}/{total_tasks}):")
     for task in todo_data:
         if task['completed']:
-            print(f"\t{task['title']}")
+            print(f"\t {task['title']}")
 
 if __name__ == "__main__":
     import sys
