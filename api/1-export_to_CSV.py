@@ -1,7 +1,6 @@
 #!/ usr/bin/python3
 
 import csv
-import os
 import requests
 import sys
 
@@ -13,7 +12,7 @@ def get_employee_todo_progress(employee_id):
     user_response = requests.get(f"{base_url}/users/{employee_id}")
     user_data = user_response.json()
     user_id = user_data['id']
-    user_name = user_data['name']
+    user_name = user_data['username']
 
     # Get employee's TODO list
     todo_response = requests.get(f"{base_url}/users/{employee_id}/todos")
@@ -27,13 +26,13 @@ def get_employee_todo_progress(employee_id):
 
         for task in todo_data:
             completed_status = "True" if task['completed'] else "False"
-            csv_writer.writerow([user_id, user_name, completed_status, task['title'])
+            csv_writer.writerow([user_id, user_name, completed_status, task['title']])
 
     print(f"Employee {user_name}'s tasks have been exported to {csv_filename} in CSV format.")
 
-    # Display the contents of the CSV file using 'cat' command
-    if os.path.exists(csv_filename):
-        os.system(f"cat {csv_filename}")
+    # Display the contents of the CSV file
+    with open(csv_filename, 'r') as f:
+        print(f.read())
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
