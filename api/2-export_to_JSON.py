@@ -4,11 +4,27 @@ import requests
 import json
 import sys
 
+"""This module provides functions to export an employee's TODO tasks to a JSON file."""
+
 def export_employee_todo_to_json(employee_id):
+    """
+    Export an employee's TODO tasks to a JSON file.
+
+    Args:
+        employee_id (int): The ID of the employee.
+
+    Returns:
+        None
+
+    Raises:
+        ValueError: If the `employee_id` is not a valid integer.
+    """
+
     # Define the base URLs for the API
     users_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
     todos_url = f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}"
 
+    # Rest of your code...
     # Get employee details
     user_response = requests.get(users_url)
     user_data = user_response.json()
