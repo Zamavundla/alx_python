@@ -26,13 +26,39 @@ def get_employee_todo_progress(employee_id):
 
         for task in todo_data:
             completed_status = "True" if task['completed'] else "False"
-            csv_writer.writerow([user_id, user_name, completed_status, task['title']])
+            csv_writer.writerow([user_id, user_name, completed_status, task['title'])
 
-    print(f"Employee {user_name}'s tasks have been exported to {csv_filename} in CSV format.")
-
-    # Display the contents of the CSV file
+    # Check the number of tasks in the CSV
+    num_lines = 0
     with open(csv_filename, 'r') as f:
-        print(f.read())
+        for line in f:
+            if not line == '\n':
+                num_lines += 1
+
+    print(f"Number of tasks in CSV: {'OK' if len(todo_data) == num_lines else 'Incorrect'}")
+
+    # Check user ID and username
+    with open(csv_filename, 'r') as f:
+        for line in f:
+            if not line == '\n':
+                if not str(user_id) in line or not str(user_name) in line:
+                    print("User ID and Username: Incorrect")
+                    break
+        else:
+            print("User ID and Username: OK")
+
+    # Check CSV formatting
+    with open(csv_filename, 'r') as f:
+        output = f.read().strip()
+        count = 0
+        for task in todo_data:
+            count += 1
+            expected_line = f'"{user_id}","{user_name}","{str(task["completed"])}","{task["title"]}"'
+            if not expected_line in output:
+                print(f"Task {count} Formatting: Incorrect")
+                break
+        else:
+            print("Formatting: OK")
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
