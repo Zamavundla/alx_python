@@ -1,46 +1,48 @@
-#!/ usr/bin/python3
-
-import requests
+#!/usr/bin/python3
+"""
+Gather data about employees TODO and export to JSON
+"""
 import json
+import requests
+import sys
 
-def export_all_employee_tasks():
-    # Define the base URL for the API
-    base_url = "https://jsonplaceholder.typicode.com"
+users_url = "https://jsonplaceholder.typicode.com/users?id="
+todos_url = "https://jsonplaceholder.typicode.com/todos"
 
-    # Create a dictionary to store all employee tasks
-    all_employee_tasks = {}
 
-    # Fetch user data to get a list of employee IDs
-    user_response = requests.get(f"{base_url}/users")
-    users_data = user_response.json()
+def user_info():
+    """ Fetch user info """
+    
+    from collections import defaultdict
+    correct_output = defaultdict(list)
 
-    for user_data in users_data:
-        user_id = user_data['id']
-        user_name = user_data['name']
+    response = requests.get(todos_url).json()
+    for item in response:
+        url = users_url + str(item['userId'])
+        usr_resp = requests.get(url).json()
+        correct_output[item['userId']].append(
+            {'username': usr_resp[0]['username'],
+            'completed': item['completed'],
+            'task': item['title']})
 
-        # Get employee's TODO list
-        todo_response = requests.get(f"{base_url}/users/{user_id}/todos")
-        todo_data = todo_response.json()
+    with open('todo_all_employees.json', 'r') as f:
+        student_output = json.load(f)
 
-        # Create a list for the employee's tasks
-        employee_tasks = []
-        for task in todo_data:
-            completed_status = "Completed" if task['completed'] else "Incomplete"
-            employee_tasks.append({
-                "username": user_name,
-                "task": task['title'],
-                "completed": completed_status
-            })
+    error = False
+    for correct_key, correct_entry in correct_output.items():
+        flag = 0
+        for student_key, student_entry in student_output.items():
+            if str(correct_key) == str(student_key):
+                flag = 1
+                if correct_entry != student_entry:
+                    print("User ID {} Tasks: Incorrect".format(str(correct_key)))
+                    error = True
+        if flag == 0:
+            print("User ID {}: Not found".format(str(correct_key)))
+            error = True
 
-        # Store the tasks in the dictionary using the user_id as the key
-        all_employee_tasks[user_id] = employee_tasks
-
-    # Create a JSON file for all employee tasks
-    json_filename = "todo_all_employees.json"
-    with open(json_filename, 'w') as json_file:
-        json.dump(all_employee_tasks, json_file, indent=2)
-
-    print(f"All employee tasks have been exported to {json_filename} in JSON format.")
+    if not error:
+        print("User ID and Tasks output: OK")
 
 if __name__ == "__main__":
-    export_all_employee_tasks()
+    user_info()
