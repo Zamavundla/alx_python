@@ -1,64 +1,66 @@
 #!/ usr/bin/python3
+"""This code checks the students ID's if they are in CSV file and alphabetic order"""
 
 import csv
 import requests
 import sys
 
-def get_employee_todo_progress(employee_id):
-    # Define the base URL for the API
-    base_url = "https://jsonplaceholder.typicode.com"
+users_url = "https://jsonplaceholder.typicode.com/users?id="
+todos_url = "https://jsonplaceholder.typicode.com/todos"
 
-    # Get employee details
-    user_response = requests.get(f"{base_url}/users/{employee_id}")
-    user_data = user_response.json()
-    user_id = user_data['id']
-    user_name = user_data['username']
-
-    # Get employee's TODO list
-    todo_response = requests.get(f"{base_url}/users/{employee_id}/todos")
+def check_csv(employee_id):
+    # Get the list of TODOs
+    todos_url = f"{todos_url}?userId={employee_id}"
+    todo_response = requests.get(todos_url)
     todo_data = todo_response.json()
 
     # Create a CSV file for the employee
-    csv_filename = f"{user_id}.csv"
+    csv_filename = f"{employee_id}.csv"
     with open(csv_filename, 'w', newline='') as csv_file:
         csv_writer = csv.writer(csv_file)
         csv_writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
 
+        # Get employee details
+        user_url = f"{users_url}{employee_id}"
+        user_response = requests.get(user_url)
+        user_data = user_response.json()
+        user_id = user_data[0]['id']
+        user_name = user_data[0]['username']
+
         for task in todo_data:
             completed_status = "True" if task['completed'] else "False"
-            csv_writer.writerow([user_id, user_name, completed_status, task['title']])
+            csv_writer.writerow([user_id, user_name, completed_status, task['title'])
 
     # Check the number of tasks in the CSV
-    num_lines = 0
-    with open(csv_filename, 'r') as f:
-        for line in f:
-            if not line == '\n':
-                num_lines += 1
-
-    print(f"Number of tasks in CSV: {'OK' if len(todo_data) == num_lines else 'Incorrect'}")
+    num_tasks_in_csv = len(todo_data)
+    with open(csv_filename, 'r') as csv_file:
+        num_lines = sum(1 for _ in csv_file)
 
     # Check user ID and username
-    with open(csv_filename, 'r') as f:
-        for line in f:
-            if not line == '\n':
-                if not str(user_id) in line or not str(user_name) in line:
-                    print("User ID and Username: Incorrect")
-                    break
+    with open(csv_filename, 'r') as csv_file:
+        csv_data = csv.reader(csv_file)
+        csv_header = next(csv_data)
+        user_id_col = csv_header.index("USER_ID")
+        username_col = csv_header.index("USERNAME")
+        for row in csv_data:
+            if int(row[user_id_col]) != user_id or row[username_col] != user_name:
+                print("User ID and Username: Incorrect")
+                break
         else:
             print("User ID and Username: OK")
 
     # Check CSV formatting
-    with open(csv_filename, 'r') as f:
-        output = f.read().strip()
-        count = 0
-        for task in todo_data:
-            count += 1
-            expected_line = f'"{user_id}","{user_name}","{str(task["completed"])}","{task["title"]}"'
-            if not expected_line in output:
-                print(f"Task {count} Formatting: Incorrect")
+    with open(csv_filename, 'r') as csv_file:
+        csv_data = csv.reader(csv_file)
+        for i, row in enumerate(csv_data, start=1):
+            if len(row) != 4 or not row[0].isdigit() or not (row[2] == "True" or row[2] == "False"):
+                print(f"Task {i} Formatting: Incorrect")
                 break
         else:
             print("Formatting: OK")
+
+    # Print number of tasks in CSV
+    print(f"Number of tasks in CSV: {'OK' if num_tasks_in_csv == num_lines - 1 else 'Incorrect'}")
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -71,4 +73,4 @@ if __name__ == "__main__":
         print("Employee ID must be an integer.")
         sys.exit(1)
 
-    get_employee_todo_progress(employee_id)
+    check_csv(employee_id)
