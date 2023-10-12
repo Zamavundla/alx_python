@@ -3,6 +3,7 @@
 import csv
 import os
 import requests
+import sys
 
 def get_employee_todo_progress(employee_id):
     # Define the base URL for the API
@@ -35,5 +36,14 @@ def get_employee_todo_progress(employee_id):
         os.system(f"cat {csv_filename}")
 
 if __name__ == "__main__":
-    employee_id = int(input("Enter the employee ID: "))
+    if len(sys.argv) != 2:
+        print("Usage: python3 <script_name> <employee_id>")
+        sys.exit(1)
+
+    try:
+        employee_id = int(sys.argv[1])
+    except ValueError:
+        print("Employee ID must be an integer.")
+        sys.exit(1)
+
     get_employee_todo_progress(employee_id)
