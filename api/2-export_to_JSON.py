@@ -1,4 +1,4 @@
-#!/ usr/bin/python3
+#!/usr/bin/python3
 
 import requests
 import json
@@ -6,21 +6,21 @@ import sys
 
 def export_employee_todo_to_json(employee_id):
     # Define the base URLs for the API
-    users_url = "https://jsonplaceholder.typicode.com/users/"
-    todos_url = "https://jsonplaceholder.typicode.com/todos?userId="
+    users_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
+    todos_url = f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}"
 
     # Get employee details
-    user_response = requests.get(users_url + str(employee_id))
+    user_response = requests.get(users_url)
     user_data = user_response.json()
 
     if not user_data:
         print(f"Employee with ID {employee_id} not found.")
         return
 
-    user_name = user_data[0]['username']
+    user_name = user_data['username']
 
     # Get employee's TODO list
-    todo_response = requests.get(todos_url + str(employee_id))
+    todo_response = requests.get(todos_url)
     todo_data = todo_response.json()
 
     # Create a JSON object for the employee's tasks
