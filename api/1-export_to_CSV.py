@@ -2,6 +2,7 @@
 
 import requests
 import csv
+import os
 
 def get_employee_todo_progress(employee_id):
     # Define the base URL for the API
@@ -24,7 +25,7 @@ def get_employee_todo_progress(employee_id):
         csv_writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])  # noqa: E501
 
         for task in todo_data:
-            completed_status = "Completed" if task['completed'] else "Incomplete"
+            completed_status = "True" if task['completed'] else "False"
             csv_writer.writerow([user_id, user_name, completed_status, task['title']])
 
     print(f"Employee {user_name}'s tasks have been exported to {csv_filename} in CSV format.")  # noqa: E501
@@ -32,3 +33,8 @@ def get_employee_todo_progress(employee_id):
 if __name__ == "__main__":
     employee_id = int(input("Enter the employee ID: "))
     get_employee_todo_progress(employee_id)
+
+    # Display the contents of the CSV file using 'cat' command
+    csv_filename = f"{employee_id}.csv"
+    if os.path.exists(csv_filename):
+        os.system(f"cat{csv_filename}")
