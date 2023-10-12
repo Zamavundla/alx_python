@@ -26,7 +26,7 @@ def get_employee_todo_progress(employee_id):
 
         for task in todo_data:
             completed_status = "True" if task['completed'] else "False"
-            csv_writer.writerow([user_id, user_name, completed_status, task['title'])
+            csv_writer.writerow([user_id, user_name, completed_status, task['title']])
 
     # Check the number of tasks in the CSV
     num_lines = 0
